@@ -1,0 +1,24 @@
+{
+  "name": "wip-local-mongo",
+  "version": "1.0.0",
+  "description": "wip mongoDB test",
+  "main": "app.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KNUT-Capstone-Design-team-1/wip-local-mongo.git"
+  },
+  "author": "2mukee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KNUT-Capstone-Design-team-1/wip-local-mongo/issues"
+  },
+  "homepage": "https://github.com/KNUT-Capstone-Design-team-1/wip-local-mongo#readme",
+  "dependencies": {
+    "@types/node": "^22.5.2",
+    "mongoose": "^8.6.0",
+    "typescript": "^5.5.4"
+  }
+}
