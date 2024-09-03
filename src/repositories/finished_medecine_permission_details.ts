@@ -1,6 +1,9 @@
 import fs from "fs";
 import path from "path";
-import { FinishedMedicinePermissionDetailsModel, IFinishedMedicinePermissionDetails } from "../models/finished_medecine_permission_details";
+import {
+  FinishedMedicinePermissionDetailsModel,
+  IFinishedMedicinePermissionDetails,
+} from "../models/finished_medecine_permission_details";
 
 export class FinishedMedecinePermissionDetailsRepository {
   private readonly model: typeof FinishedMedicinePermissionDetailsModel;
@@ -50,6 +53,7 @@ export class FinishedMedecinePermissionDetailsRepository {
 
     return resources;
   }
+
   private upsertOne(data: IFinishedMedicinePermissionDetails) {
     this.model.updateOne({ ITEM_SEQ: data.ITEM_SEQ }, data, {
       new: true,

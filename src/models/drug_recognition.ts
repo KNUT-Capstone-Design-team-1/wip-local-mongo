@@ -4,7 +4,7 @@ import { model, Schema } from "mongoose";
  * 의약품 낱알식별정보 데이터
  */
 
-export interface IDrugPermission {
+export interface IDrugRecognition {
   ITEM_SEQ: string; // 품목 일련 번호
   ITEM_NAME: string; // 품목명
   ENTP_SEQ: string; // 업체 일련 번호
@@ -34,7 +34,7 @@ export interface IDrugPermission {
   EDI_CODE: string; // 보험 코드
 }
 
-const DRUG_RECOGNITION_SCHEMA = new Schema<IDrugPermission>(
+const DRUG_RECOGNITION_SCHEMA = new Schema<IDrugRecognition>(
   {
     ITEM_SEQ: { type: String, require: true, unique: true },
     ITEM_NAME: { type: String, require: true },
@@ -67,4 +67,7 @@ const DRUG_RECOGNITION_SCHEMA = new Schema<IDrugPermission>(
   { collection: "DrugRecognition" }
 );
 
-export const DRUG_RECOGNITION_MODEL = model<IDrugPermission>("DrugRecognition", DRUG_RECOGNITION_SCHEMA);
+export const DRUG_RECOGNITION_MODEL = model<IDrugRecognition>(
+  "DrugRecognition",
+  DRUG_RECOGNITION_SCHEMA
+);

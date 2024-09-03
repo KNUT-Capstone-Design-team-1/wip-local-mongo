@@ -1,16 +1,16 @@
 import fs from "fs";
 import path from "path";
 import {
-  FinishedMedicinePermissionDetailsModel,
-  IFinishedMedicinePermissionDetails,
-} from "../models/finished_medecine_permission_details";
+  DRUG_RECOGNITION_MODEL,
+  IDrugRecognition,
+} from "../models/drug_recognition";
 
 export class DrugRecognitionRepository {
-  private readonly model: typeof FinishedMedicinePermissionDetailsModel;
+  private readonly model: typeof DRUG_RECOGNITION_MODEL;
   private readonly resDirPath: string;
 
   constructor() {
-    this.model = FinishedMedicinePermissionDetailsModel;
+    this.model = DRUG_RECOGNITION_MODEL;
     this.resDirPath = path.join(__dirname, "../../res/drug_recognition");
   }
 
@@ -26,7 +26,7 @@ export class DrugRecognitionRepository {
     }
   }
 
-  private readResources(): Array<IFinishedMedicinePermissionDetails> {
+  private readResources(): Array<IDrugRecognition> {
     if (!fs.existsSync(this.resDirPath)) {
       console.log(`${this.resDirPath} is not exist`);
       return [];
@@ -38,12 +38,12 @@ export class DrugRecognitionRepository {
       return [];
     }
 
-    const resources: Array<IFinishedMedicinePermissionDetails> = [];
+    const resources: Array<IDrugRecognition> = [];
 
     for (const fileName of fileNames) {
       const resource = JSON.parse(
         fs.readFileSync(path.join(this.resDirPath, `/${fileName}`), "utf8")
-      ) as IFinishedMedicinePermissionDetails;
+      ) as IDrugRecognition;
 
       resources.push(resource);
     }
@@ -51,7 +51,7 @@ export class DrugRecognitionRepository {
     return resources;
   }
 
-  private upsert(data: IFinishedMedicinePermissionDetails) {
+  private upsert(data: IDrugRecognition) {
     this.model.updateOne({ ITEM_SEQ: data.ITEM_SEQ }, data, {
       new: true,
       upsert: true,
