@@ -9,13 +9,13 @@ async function main() {
   console.log("initialize DrugRecognition");
 
   const drugRecognitionRepository = new DrugRecognitionRepository();
-  drugRecognitionRepository.initializeCollection();
+  await drugRecognitionRepository.initializeCollection();
 
   console.log("initialize FinishedPer");
 
   const finishedMedecinePermissionRepository =
     new FinishedMedecinePermissionDetailsRepository();
-  finishedMedecinePermissionRepository.initializeCollection();
+  await finishedMedecinePermissionRepository.initializeCollection();
 
   console.log("initialize complete");
 }

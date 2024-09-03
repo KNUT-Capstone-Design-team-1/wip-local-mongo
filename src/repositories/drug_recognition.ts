@@ -15,18 +15,26 @@ export class DrugRecognitionRepository {
   }
 
   public async initializeCollection() {
-    const resources = this.readResources();
-
-    if (!resources.length) {
+    const resourceFileNames = this.getResourceFileNames();
+    if (!resourceFileNames.length) {
       return;
     }
 
-    for (const resource of resources) {
-      this.upsert(resource);
+    for await (const fileName of resourceFileNames) {
+      console.log(`read ${fileName}`);
+
+      const resources = this.readResource(fileName);
+      if (!resources.length) {
+        console.log(`resource not exist in file ${fileName}`);
+        continue;
+      }
+
+      console.log(`upsert resource ${fileName}`);
+      await this.upsertMany(resources);
     }
   }
 
-  private readResources(): Array<IDrugRecognition> {
+  private getResourceFileNames() {
     if (!fs.existsSync(this.resDirPath)) {
       console.log(`${this.resDirPath} is not exist`);
       return [];
@@ -38,21 +46,24 @@ export class DrugRecognitionRepository {
       return [];
     }
 
-    const resources: Array<IDrugRecognition> = [];
-
-    for (const fileName of fileNames) {
-      const resource = JSON.parse(
-        fs.readFileSync(path.join(this.resDirPath, `/${fileName}`), "utf8")
-      ) as IDrugRecognition;
-
-      resources.push(resource);
-    }
-
-    return resources;
+    return fileNames;
   }
 
-  private upsert(data: IDrugRecognition) {
-    this.model.updateOne({ ITEM_SEQ: data.ITEM_SEQ }, data, {
+  private readResource(fileName: string): Array<IDrugRecognition> {
+    return JSON.parse(
+      fs.readFileSync(path.join(this.resDirPath, `/${fileName}`), "utf8")
+    );
+  }
+
+  private async upsertMany(datas: Array<IDrugRecognition>) {
+    for await (const data of datas) {
+      await this.upsertOne(data);
+    }
+  }
+
+  private async upsertOne(data: IDrugRecognition) {
+    console.log(data);
+    await this.model.updateOne({ ITEM_SEQ: data.ITEM_SEQ }, data, {
       new: true,
       upsert: true,
     });
