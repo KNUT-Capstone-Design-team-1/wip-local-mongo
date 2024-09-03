@@ -7,3 +7,10 @@
 ```bash
 yarn start
 ```
+
+# Requirement
+
+- ./res
+  - json 리소스 디렉터리
+  - drug_recognition
+  - finished_medecine_permission_details
