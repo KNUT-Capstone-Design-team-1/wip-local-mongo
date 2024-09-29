@@ -64,7 +64,10 @@ export class FinishedMedecinePermissionDetailsRepository {
     }
   }
 
-  private async upsertOne(data: IFinishedMedicinePermissionDetails) {
+  private async upsertOne(data: IFinishedMedicinePermissionDetails & { _id?: Object, __v?: number }) {
+    delete data._id;
+    delete data.__v;
+
     await this.model.updateOne({ ITEM_SEQ: data.ITEM_SEQ }, data, {
       new: true,
       upsert: true,

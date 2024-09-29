@@ -61,7 +61,10 @@ export class DrugRecognitionRepository {
     }
   }
 
-  private async upsertOne(data: IDrugRecognition) {
+  private async upsertOne(data: IDrugRecognition & { _id?: Object, __v?: number }) {
+    delete data._id;
+    delete data.__v;
+
     await this.model.updateOne({ ITEM_SEQ: data.ITEM_SEQ }, data, {
       new: true,
       upsert: true,
