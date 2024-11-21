@@ -3,9 +3,9 @@ import path from "path";
 import {
   FinishedMedicinePermissionDetailsModel,
   IFinishedMedicinePermissionDetails,
-} from "../models/finished_medecine_permission_details";
+} from "../models/finished_medicine_permission_details";
 
-export class FinishedMedecinePermissionDetailsRepository {
+export class FinishedMedicinePermissionDetailsRepository {
   private readonly model: typeof FinishedMedicinePermissionDetailsModel;
   private readonly resDirPath: string;
 
@@ -13,7 +13,7 @@ export class FinishedMedecinePermissionDetailsRepository {
     this.model = FinishedMedicinePermissionDetailsModel;
     this.resDirPath = path.join(
       __dirname,
-      "../../res/finished_medecine_permission_details"
+      "../../res/finished_medicine_permission_details"
     );
   }
 

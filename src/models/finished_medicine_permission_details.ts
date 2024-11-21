@@ -68,6 +68,6 @@ const FinishedMedicinePermissionDetailsSchema =
 
 export const FinishedMedicinePermissionDetailsModel =
   model<IFinishedMedicinePermissionDetails>(
-    "FinishedMedecinePermissionDetails",
+    "FinishedMedicinePermissionDetails",
     FinishedMedicinePermissionDetailsSchema
   );

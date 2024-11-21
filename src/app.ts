@@ -1,6 +1,6 @@
 import { connect } from "mongoose";
 import { DrugRecognitionRepository } from "./repositories/drug_recognition";
-import { FinishedMedecinePermissionDetailsRepository } from "./repositories/finished_medecine_permission_details";
+import { FinishedMedicinePermissionDetailsRepository } from "./repositories/finished_medicine_permission_details";
 
 async function main() {
   console.log("connect DB");
@@ -11,11 +11,11 @@ async function main() {
   const drugRecognitionRepository = new DrugRecognitionRepository();
   await drugRecognitionRepository.initializeCollection();
 
-  console.log("initialize FinishedPer");
+  console.log("initialize finishedMedicinePermission");
 
-  const finishedMedecinePermissionRepository =
-    new FinishedMedecinePermissionDetailsRepository();
-  await finishedMedecinePermissionRepository.initializeCollection();
+  const finishedMedicinePermissionRepository =
+    new FinishedMedicinePermissionDetailsRepository();
+  await finishedMedicinePermissionRepository.initializeCollection();
 
   console.log("initialize complete");
 }

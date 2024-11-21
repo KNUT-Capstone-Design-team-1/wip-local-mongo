@@ -13,4 +13,4 @@ yarn start
 - ./res
   - json 리소스 디렉터리
   - drug_recognition
-  - finished_medecine_permission_details
+  - finished_medicine_permission_details
